@@ -3,6 +3,17 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="my_name">Billy Soomro</string>
+    <string name="personal_profile">Professional Profile</string>
+    <string name="personal_profile_text">An enthusiastic, self-motivated and recent MSc graduate seeking opportunities to leverage and develop his academic and professional experience in a fast-paced, stimulating and challenging environment. Culturally sensitive with extensive international exposure having lived and studied in numerous countries with excellent written, communication and interpersonal skills. Possesses a versatile skill set that includes software development, web development, database management and project management.</string>
+    <string name="education">Education</string>
+    <string name="skill_set">Skill set</string>
+    <string name="experience">Experience</string>
+    <string name="references">References</string>
+    <string name="contact">Contact</string>
+    <string name="degree">MSc Graduate</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
