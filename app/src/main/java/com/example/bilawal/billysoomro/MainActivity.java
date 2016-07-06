@@ -3,6 +3,7 @@ package com.example.bilawal.billysoomro;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FragmentTransaction transaction;
+    private Experience experience;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,34 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //This will handle the replacement of fragments inside the container
+        transaction = getSupportFragmentManager().beginTransaction();
+
+        profile = new Profile();
+        experience = new Experience();
+
+
+        //This checks for a container and then inserts the profile fragment into the container
+        if (findViewById(R.id.fragment_container) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            profile.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, profile).commit();
+        }
+
+
+
     }
 
     @Override
@@ -81,8 +114,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.personal_profile) {
-            // Handle the camera action
+
+            transaction.replace(R.id.fragment_container, profile);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
         } else if (id == R.id.experience) {
+
+            transaction.replace(R.id.fragment_container, experience);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         } else if (id == R.id.education) {
 
