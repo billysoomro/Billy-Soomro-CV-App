@@ -13,18 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FragmentTransaction transaction;
+    //private FragmentTransaction transaction;
     private Experience experience;
     private Profile profile;
+    private static final String TAG = "BillysMessage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i(TAG, "onCreate");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 
 
         //This will handle the replacement of fragments inside the container
-        transaction = getSupportFragmentManager().beginTransaction();
+        //transaction = getSupportFragmentManager().beginTransaction();
 
         profile = new Profile();
         experience = new Experience();
@@ -115,15 +120,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.personal_profile) {
 
-            transaction.replace(R.id.fragment_container, profile);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, profile);
+            ft.addToBackStack(null);
+            ft.commit();
 
         } else if (id == R.id.experience) {
 
-            transaction.replace(R.id.fragment_container, experience);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, experience);
+            ft.addToBackStack(null);
+            ft.commit();
 
         } else if (id == R.id.education) {
 
